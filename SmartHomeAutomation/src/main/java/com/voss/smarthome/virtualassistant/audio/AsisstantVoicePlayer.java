@@ -31,6 +31,7 @@ import com.google.cloud.texttospeech.v1.SynthesizeSpeechResponse;
 import com.google.cloud.texttospeech.v1.TextToSpeechClient;
 import com.google.cloud.texttospeech.v1.VoiceSelectionParams;
 import com.google.protobuf.ByteString;
+import com.voss.smarthome.virtualassistant.commands.CommandConstants;
 
 
 
@@ -84,14 +85,13 @@ public class AsisstantVoicePlayer {
 
 				      // Perform the text-to-speech request on the text input with the selected voice parameters and
 				      // audio file type
-				      SynthesizeSpeechResponse response = textToSpeechClient.synthesizeSpeech(input, voice,
-				          audioConfig);
+				      SynthesizeSpeechResponse response = textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);
 
 				      // Get the audio contents from the response
 				      ByteString audioContents = response.getAudioContent();
 
 				      // Write the response to the output file.
-				      String fileName = "assistantResponse.wav";
+				      String fileName = CommandConstants.ASSISTANT_RESPONSE_FILE;
 				  
 				        OutputStream out = new FileOutputStream(fileName);
 				        out.write(audioContents.toByteArray());
@@ -150,7 +150,7 @@ public class AsisstantVoicePlayer {
 	            final Player p=Manager.createRealizedPlayer(responseFile.toURI().toURL());
 
 
-	             // Start the music
+	             // Start the speech
 	             p.start();            
 	          
 	        }  
