@@ -75,7 +75,7 @@ private static volatile BlockingQueue<byte[]> sharedQueue = new LinkedBlockingQu
   }
 
   /** Performs infinite streaming speech recognition */
-  public static void infiniteStreamingRecognize(String languageCode) throws Exception {
+	public static void infiniteStreamingRecognize(String languageCode) throws Exception {
 
     // Microphone Input buffering
     class MicBuffer implements Runnable {
