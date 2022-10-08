@@ -14,20 +14,8 @@ import com.voss.smarthome.virtualassistant.commands.CommandConstants;
  */
 public class VirtualAssistant {
 
-	/**
-	 * 
-	 */
-	
-	
+	public VirtualAssistant(){}
 
-	
-	public VirtualAssistant()
-	{
-		
-		
-		
-	}
-	
 	public void speakToUser(String command)
 	{
 		
