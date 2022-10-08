@@ -33,10 +33,6 @@ import com.google.cloud.texttospeech.v1.VoiceSelectionParams;
 import com.google.protobuf.ByteString;
 import com.voss.smarthome.virtualassistant.commands.CommandConstants;
 
-
-
-
-
 public class AsisstantVoicePlayer {
 	 
 	    // to store current position 
@@ -50,68 +46,55 @@ public class AsisstantVoicePlayer {
 	    static String filePath; 
 	  
 	    // constructor to initialize streams and clip 
-		public AsisstantVoicePlayer()
-		
-	        throws UnsupportedAudioFileException, 
-	        IOException, LineUnavailableException  
-	    { 
-	      
-	          
-	
-	    } 
+		public AsisstantVoicePlayer() throws UnsupportedAudioFileException, IOException, LineUnavailableException  
+	    {} 
 		
 		public static void translateToSpeech(String text) throws IOException  
 		{
-		  
-			   try {
-				TextToSpeechClient textToSpeechClient = TextToSpeechClient.create();
+			try {
+			      TextToSpeechClient textToSpeechClient = TextToSpeechClient.create();
 
-				      // Set the text input to be synthesized
-				      SynthesisInput input = SynthesisInput.newBuilder().setText(text).build();
+			      // Set the text input to be synthesized
+			      SynthesisInput input = SynthesisInput.newBuilder().setText(text).build();
 
-				      // Build the voice request, select the language code ("en-US") and the ssml voice gender
-				      // ("neutral")
-				      VoiceSelectionParams voice = VoiceSelectionParams.newBuilder()
-				          .setLanguageCode("en-US")
-				          .setName("en-US-Wavenet-F")
-				          .setSsmlGender(SsmlVoiceGender.FEMALE)
-				          .build();
+			      // Build the voice request, select the language code ("en-US") and the ssml voice gender
+			      // ("neutral")
+			      VoiceSelectionParams voice = VoiceSelectionParams.newBuilder()
+				  .setLanguageCode("en-US")
+				  .setName("en-US-Wavenet-F")
+				  .setSsmlGender(SsmlVoiceGender.FEMALE)
+				  .build();
 
-				      // Select the type of audio file you want returned
-				      AudioConfig audioConfig = AudioConfig.newBuilder()
-				              .setAudioEncoding(com.google.cloud.texttospeech.v1.AudioEncoding.LINEAR16)
-				              .build();
+			      // Select the type of audio file you want returned
+			      AudioConfig audioConfig = AudioConfig.newBuilder()
+				      .setAudioEncoding(com.google.cloud.texttospeech.v1.AudioEncoding.LINEAR16)
+				      .build();
 
+			      // Perform the text-to-speech request on the text input with the selected voice parameters and
+			      // audio file type
+			      SynthesizeSpeechResponse response = textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);
 
-				      // Perform the text-to-speech request on the text input with the selected voice parameters and
-				      // audio file type
-				      SynthesizeSpeechResponse response = textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);
+			      // Get the audio contents from the response
+			      ByteString audioContents = response.getAudioContent();
 
-				      // Get the audio contents from the response
-				      ByteString audioContents = response.getAudioContent();
+			      // Write the response to the output file.
+			      String fileName = CommandConstants.ASSISTANT_RESPONSE_FILE;
 
-				      // Write the response to the output file.
-				      String fileName = CommandConstants.ASSISTANT_RESPONSE_FILE;
-				  
-				        OutputStream out = new FileOutputStream(fileName);
-				        out.write(audioContents.toByteArray());
-				        System.out.println("Audio content written to file " + fileName);
-				        out.close();
+				OutputStream out = new FileOutputStream(fileName);
+				out.write(audioContents.toByteArray());
+				System.out.println("Audio content written to file " + fileName);
+				out.close();
 			} 
 			   catch (IOException e) 
-			   {
-				
+			   {				
 				 throw new IOException();
-			   }
-			        
-			      
-		   
-	 }
+			   }   
+		 }
 		
 		public static void translateToText(String fileName) throws IOException  
 	    { 
-		 try (SpeechClient speechClient = SpeechClient.create()) {
-
+		 try (SpeechClient speechClient = SpeechClient.create())
+		 {
 
 		      // Reads the audio file into memory
 		      Path path = Paths.get(fileName);
@@ -145,10 +128,10 @@ public class AsisstantVoicePlayer {
 	    { 
 	        try
 	        {           
-	        	 File responseFile = new File(fileName);
-	         // Create a Player object that realizes the audio
+	            File responseFile = new File(fileName);
+			
+	            // Create a Player object that realizes the audio
 	            final Player p=Manager.createRealizedPlayer(responseFile.toURI().toURL());
-
 
 	             // Start the speech
 	             p.start();            
