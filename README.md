@@ -1,1 +1,5 @@
-Please ignore my messy code as I just wanted to get Google Cloud working.  I plan on reformatting and updating the code into a proper structure
+Please ignore my messy code as I just wanted to get Google Cloud working.  I plan on reformatting and updating the code into a proper structure.
+
+About the project
+
+  I've had an idea to build a VirtualAssistant.  Boo every one has written one!  Not so fast... does yours have the ability to take all the IoT apps you have on your phone and give you 1 app for it all? Does yours have the ability to run in the background subtly using detectors to do things like lighting the floor for you at night when your feet hit the floor lighting the way to your hotspots at that time.  What about holagraphic displays that you can interact with?  This project is for me to learn first and foremost how to interact with these devices in ways not thought about with ideas that have not been done.  I work on it from time to time due to  my work/family so it's slow moving I've gone yrs so far without any new updates unfortunately. However, the speech recognition part is working, but I'm unsure if I'm gonna use GCP in the long run.
