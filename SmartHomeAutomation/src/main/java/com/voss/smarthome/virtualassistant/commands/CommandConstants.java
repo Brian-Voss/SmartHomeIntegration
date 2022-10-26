@@ -9,7 +9,7 @@ package com.voss.smarthome.virtualassistant.commands;
  */
 public class CommandConstants {
 		
-		public static final String ASSISTANT_NAME = "Heather";
+		public static final String ASSISTANT_NAME = "Singularity";
 		public static final String NOTIFICATION_SOUND_FILE = "./resources/boop.wav";
 		public static final String ASSISTANT_RESPONSE_FILE = "./resources/assistantResponse.wav";
 		public static final String INCOMMING_RESPONSE_FILE = "./resources/Recording.wav";		
